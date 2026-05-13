@@ -1,0 +1,40 @@
+import pandas as pd
+
+# Creating the dataset
+data = {
+    "NAME": ["A", "B", "C", "D"],
+    "DEPT": ["IT", "HR", "IT", "HR"],
+    "SALARY": [50000, 40000, 60000, 45000]
+}
+
+# Creating DataFrame
+df = pd.DataFrame(data)
+
+print("Employee Data:\n")
+print(df)
+
+# 1. Average salary per department
+avg_salary = df.groupby("DEPT")["SALARY"].mean()
+
+print("\nAverage Salary Per Department:\n")
+print(avg_salary)
+
+# 2. Highest paid employee per department
+highest_paid = df.loc[df.groupby("DEPT")["SALARY"].idxmax()]
+
+print("\nHighest Paid Employee Per Department:\n")
+print(highest_paid)
+
+# BONUS
+
+# 3. Count employees per department
+employee_count = df.groupby("DEPT")["NAME"].count()
+
+print("\nEmployee Count Per Department:\n")
+print(employee_count)
+
+# 4. Sort departments by average salary
+sorted_avg_salary = avg_salary.sort_values(ascending=False)
+
+print("\nDepartments Sorted By Average Salary:\n")
+print(sorted_avg_salary)
